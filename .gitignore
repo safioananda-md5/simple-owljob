@@ -1,0 +1,7 @@
+# Abaikan file konfigurasi database yang berisi password/IP sensitif
+config.php
+
+# (Opsional) Abaikan folder vendor jika pakai composer, log, atau environment file
+.env
+*.log
+vendor/
