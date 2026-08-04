@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" data-bs-theme="light">
 
 <head>
     <meta charset="UTF-8">
@@ -27,20 +27,42 @@
             --primary-color: #4f46e5;
             --primary-hover: #4338ca;
             --card-border: rgba(226, 232, 240, 0.8);
+            --navbar-bg: #ffffff;
+            --board-bg: rgba(255, 255, 255, 0.6);
+            --column-bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-color: #334155;
+            --text-muted: #64748b;
+        }
+
+        /* Variables untuk Dark Mode */
+        [data-bs-theme="dark"] {
+            --bg-main: #0f172a;
+            --primary-color: #6366f1;
+            --primary-hover: #4f46e5;
+            --card-border: rgba(255, 255, 255, 0.1);
+            --navbar-bg: #1e293b;
+            --board-bg: rgba(30, 41, 59, 0.7);
+            --column-bg: #0f172a;
+            --card-bg: #1e293b;
+            --text-color: #f8fafc;
+            --text-muted: #94a3b8;
         }
 
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-main);
-            color: #334155;
+            color: var(--text-color);
             min-height: 100vh;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         /* Navbar Style */
         .navbar-admin {
-            background-color: #ffffff;
-            border-bottom: 1px solid #e2e8f0;
+            background-color: var(--navbar-bg);
+            border-bottom: 1px solid var(--card-border);
             box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
         .navbar-brand {
@@ -60,20 +82,21 @@
             left: 12px;
             top: 50%;
             transform: translateY(-50%);
-            color: #94a3b8;
+            color: var(--text-muted);
         }
 
         .search-wrapper input {
             padding-left: 36px;
-            background-color: #f8fafc;
-            border-color: #e2e8f0;
+            background-color: var(--column-bg);
+            border-color: var(--card-border);
             border-radius: 20px;
             font-size: 0.875rem;
+            color: var(--text-color);
         }
 
         /* Breadcrumb Style */
         .breadcrumb-item a {
-            color: #64748b;
+            color: var(--text-muted);
             text-decoration: none;
             font-weight: 500;
         }
@@ -92,35 +115,33 @@
             white-space: nowrap;
             padding: 1.5rem;
             height: calc(100vh - 210px);
-            /* Ketinggian presisi mengikuti sisa viewport */
             gap: 1.25rem;
-            background-color: rgba(255, 255, 255, 0.6);
+            background-color: var(--board-bg);
             backdrop-filter: blur(8px);
             border-radius: 16px;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
-            border: 1px solid #ffffff;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--card-border);
+            transition: background-color 0.3s ease;
         }
 
         /* Column Style */
         .board-column {
             flex: 0 0 300px;
             max-width: 300px;
-            background-color: #f8fafc;
-            border: 1px solid #e2e8f0;
+            background-color: var(--column-bg);
+            border: 1px solid var(--card-border);
             border-radius: 12px;
             display: flex;
             flex-direction: column;
             max-height: 100%;
             padding: 1rem;
+            transition: background-color 0.3s ease;
         }
 
         .column-header span:first-child {
             white-space: normal;
-            /* Mengembalikan teks ke mode wrap normal */
             word-break: break-word;
-            /* Memotong kata yang terlalu panjang jika diperlukan */
             line-height: 1.3;
-            /* Jarak antar baris agar lebih rapi */
         }
 
         /* Column Header */
@@ -156,6 +177,27 @@
             color: #475569;
         }
 
+        /* Dark mode penyesuaian header status */
+        [data-bs-theme="dark"] .bg-header-todo {
+            background-color: rgba(3, 105, 161, 0.25);
+            color: #38bdf8;
+        }
+
+        [data-bs-theme="dark"] .bg-header-progress {
+            background-color: rgba(180, 83, 9, 0.25);
+            color: #fbbf24;
+        }
+
+        [data-bs-theme="dark"] .bg-header-done {
+            background-color: rgba(29, 78, 216, 0.25);
+            color: #60a5fa;
+        }
+
+        [data-bs-theme="dark"] .bg-header-default {
+            background-color: rgba(71, 85, 105, 0.25);
+            color: #94a3b8;
+        }
+
         /* Scrollable Column Body */
         .column-body {
             overflow-y: auto;
@@ -168,19 +210,18 @@
 
         /* Task Card Style */
         .task-card {
-            background-color: #ffffff;
+            background-color: var(--card-bg);
             border-radius: 10px;
             padding: 1rem;
             border: 1px solid var(--card-border);
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), 0 1px 2px rgba(0, 0, 0, 0.04);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
             white-space: normal;
             transition: all 0.2s ease-in-out;
         }
 
         .task-card:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
-            border-color: #cbd5e1;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
         }
 
         /* Custom Badges */
@@ -208,6 +249,21 @@
             color: #b91c1c;
         }
 
+        [data-bs-theme="dark"] .badge-low {
+            background-color: rgba(4, 120, 87, 0.3);
+            color: #34d399;
+        }
+
+        [data-bs-theme="dark"] .badge-medium {
+            background-color: rgba(180, 83, 9, 0.3);
+            color: #fbbf24;
+        }
+
+        [data-bs-theme="dark"] .badge-high {
+            background-color: rgba(185, 28, 28, 0.3);
+            color: #f87171;
+        }
+
         /* Custom Scrollbar */
         .column-body::-webkit-scrollbar,
         .board-container::-webkit-scrollbar {
@@ -219,6 +275,11 @@
         .board-container::-webkit-scrollbar-thumb {
             background-color: #cbd5e1;
             border-radius: 10px;
+        }
+
+        [data-bs-theme="dark"] .column-body::-webkit-scrollbar-thumb,
+        [data-bs-theme="dark"] .board-container::-webkit-scrollbar-thumb {
+            background-color: #334155;
         }
     </style>
 </head>
@@ -246,10 +307,11 @@
 
                 <!-- Right Menu -->
                 <div class="d-flex align-items-center gap-3 mt-3 mt-lg-0">
-                    <!-- <button class="btn btn-light rounded-circle position-relative p-2" title="Notifikasi">
-                        <i class="bi bi-bell text-secondary fs-5"></i>
-                        <span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle"></span>
-                    </button> -->
+
+                    <!-- TOMBOL TOGGLE DARK MODE -->
+                    <button class="btn btn-outline-secondary d-flex align-items-center justify-content-center" id="themeToggle" title="Ganti Mode">
+                        Theme
+                    </button>
 
                     <div class="vr d-none d-lg-block my-2 text-secondary"></div>
 
@@ -258,7 +320,7 @@
                         <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle gap-2" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="https://ui-avatars.com/api/?name=Kharisma+Safio&background=4f46e5&color=fff" alt="User Avatar" width="36" height="36" class="rounded-circle">
                             <div class="d-none d-sm-block text-start">
-                                <div class="fw-semibold text-dark fs-7 lh-sm">Kharisma Safio Ananda</div>
+                                <div class="fw-semibold fs-7 lh-sm">Kharisma Safio Ananda</div>
                                 <small class="text-muted fs-8">safiopertama@gmail.com</small>
                             </div>
                         </a>
@@ -289,12 +351,12 @@
                         <li class="breadcrumb-item active" aria-current="page">Kanban Board</li>
                     </ol>
                 </nav>
-                <h4 class="fw-bold mb-0 text-dark">Project Board Workspace</h4>
+                <h4 class="fw-bold mb-0">Project Board Workspace</h4>
             </div>
 
             <!-- Action Header Buttons -->
             <div class="mt-3 mt-md-0 d-flex gap-2">
-                <span class="badge rounded-pill bg-light text-secondary border px-3 py-2 fw-normal">
+                <span class="badge rounded-pill bg-body-tertiary text-body border px-3 py-2 fw-normal">
                     <i class="bi bi-filter me-1"></i> if0_42571180
                 </span>
                 <button class="btn btn-primary btn-sm rounded-pill px-3" style="background-color: var(--primary-color); border:none;"><i class="bi bi-plus-lg me-1 d-none"></i> No Function</button>
@@ -309,6 +371,40 @@
     <!-- Bootstrap 5 JS Bundle CDN -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
+
+    <!-- SCRIPT DARK MODE TOGGLE -->
+    <script>
+        $(document).ready(function() {
+            const $html = $('html');
+            const $themeToggleBtn = $('#themeToggle');
+            const $themeIcon = $('#themeIcon');
+
+            // 1. Cek mode yang tersimpan di localStorage saat halaman dimuat
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            setTheme(savedTheme);
+
+            // 2. Event click tombol toggle
+            $themeToggleBtn.on('click', function() {
+                const currentTheme = $html.attr('data-bs-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                setTheme(newTheme);
+            });
+
+            // Fungsi untuk menerapkan tema
+            function setTheme(theme) {
+                $html.attr('data-bs-theme', theme);
+                localStorage.setItem('theme', theme);
+
+                if (theme === 'dark') {
+                    $themeIcon.removeClass('bi-moon-stars-fill').addClass('bi-sun-fill');
+                    $themeToggleBtn.removeClass('btn-outline-secondary').addClass('btn-outline-warning');
+                } else {
+                    $themeIcon.removeClass('bi-sun-fill').addClass('bi-moon-stars-fill');
+                    $themeToggleBtn.removeClass('btn-outline-warning').addClass('btn-outline-secondary');
+                }
+            }
+        });
+    </script>
 </body>
 
 </html>

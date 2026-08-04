@@ -13,7 +13,7 @@ $(document).ready(function () {
             <div class="board-column">
                 <div class="column-header bg-header-todo">
                     <span>${project.project_name}</span>
-                    <span class="badge bg-white text-primary rounded-pill fw-bold">2</span>
+                    <span class="badge bg-white text-primary rounded-pill fw-bold">${project.tasks.length}</span>
                     <a href="https://kanboard.madinapay.id/?controller=BoardViewController&action=show&project_id=${project.project_id}" class="badge bg-primary text-light fw-bold rounded-pill fw-bold" target="_blank"><i class="bi bi-plus-lg"></i></a>
                 </div>
                 <div class="column-body">
@@ -23,7 +23,7 @@ $(document).ready(function () {
             projectHtml += `
               <div class="task-card">
                   <span class="badge badge-custom badge-high mb-2">To Do</span>
-                  <p class="fw-semibold text-dark mb-1">${task.title}</p>
+                  <p class="fw-semibold text-body mb-1">${task.title}</p>
                   <p class="text-secondary small mb-3 text-break">${task.description}</p>
                   <div class="d-flex align-items-center justify-content-between border-top pt-2">
                       <small class="text-muted"><i class="bi bi-clock me-1"></i>${task.date_modification}</small>
